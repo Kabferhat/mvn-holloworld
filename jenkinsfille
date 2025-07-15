@@ -1,15 +1,20 @@
 pipeline {
     agent any
+
     stages {
-        stage('clone') {
+        stage('Clone') {
             steps { 
-                sh "rm -rf *"
-                sh "git clone https://github.com/Kabferhat/jenkins-test.git"
-                //
+                sh 'rm -rf *'
+                sh 'git clone https://github.com/Kabferhat/jenkins-test.git'
             }
         }
-        stage('build') { 
+
+        stage('Build') { 
             steps { 
-                sh "cd jenkins-test/ javac main.java"  
-                //
+                dir('jenkins-test') {
+                    sh 'javac main.java'
+                }
             }
+        }
+    }
+}
